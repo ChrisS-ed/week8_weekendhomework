@@ -1,8 +1,5 @@
 
 
-
-
-// Create a method that lists the inventory.
 // Create a method so that the RecordStore can sell a record. Adjust the cash in bank to take into account the price of the record sold
 // Create a method that reports on the financial situation of the store. Cash and value of inventory.
 // Create a RecordCollector (or customer) constructor who can buy and sell records.
@@ -66,6 +63,17 @@ describe("RecordStore", function() {
     myRecordStore.inventory.push(record00s);
     myRecordStore.inventory.push(record10s);
     assert.deepEqual(myRecordStore.inventory, [record60s, record70s, record80s, record90s, record00s, record10s]);
-  })
+  });
+
+  // Create a method that lists the inventory.
+  it("should be able to list its inventory", function(){
+    var myRecordStore = new RecordStore("Scratched Records", "Edinburgh");
+    var record60s = new Record("The Doors", "Waiting For The Sun", 12);
+    var record70s = new Record("David Bowie", "The Rise and Fall of Ziggy Stardust", 10);
+    var record80s = new Record("Pixies", "Surfer Rosa", 8);
+    var record90s = new Record("Beck", "Odelay", 9);
+    myRecordStore.inventory = [record60s, record70s, record80s, record90s];
+    myRecordStore.listInventory();
+  });
 })
 

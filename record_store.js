@@ -11,5 +11,16 @@ var RecordStore = function(name, city) {
   this.balance = 0;
 }
 
+RecordStore.prototype = {
+  listInventory: function() {
+    for (var i=0; i<this.inventory.length; i++) {
+      console.log("Artist:", this.inventory[i].artist);
+      console.log("Title:", this.inventory[i].title);
+      console.log("Price: £", this.inventory[i].price);
+      console.log("**************************************************************");
+    }
+  }
+}
+
 module.exports.Record = Record;
 module.exports.RecordStore = RecordStore;
