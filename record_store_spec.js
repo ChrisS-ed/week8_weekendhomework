@@ -41,11 +41,16 @@ describe("RecordStore", function() {
     var record70s = new Record("David Bowie", "The Rise and Fall of Ziggy Stardust", 10);
     var record80s = new Record("Pixies", "Surfer Rosa", 8);
     var record90s = new Record("Beck", "Odelay", 9);
-    var inventory = [record60s, record70s, record80s, record90s];
-    var myRecordStore = new RecordStore("Scratched Records", "Edinburgh", inventory);
+    var myRecordStore = new RecordStore("Scratched Records", "Edinburgh");
+    myRecordStore.inventory = [record60s, record70s, record80s, record90s];
     assert.deepEqual(myRecordStore.inventory, [record60s, record70s, record80s, record90s]);
   });
 
   // Give the RecordStore a balance i.e. cash in bank.
+  it("should have a balance i.e. cash in bank", function(){
+    var myRecordStore = new RecordStore("Scratched Records", "Edinburgh");
+    myRecordStore.balance = 2000;
+    assert.equal(myRecordStore.balance, 2000);
+  })
 })
 

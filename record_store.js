@@ -4,10 +4,11 @@ var Record = function(artist, title, price) {
   this.price = price;
 }
 
-var RecordStore = function(name, city, inventory) {
+var RecordStore = function(name, city) {
   this.name = name;
   this.city = city;
-  this.inventory = inventory;
+  this.inventory = [];
+  this.balance = 0;
 }
 
 module.exports.Record = Record;
