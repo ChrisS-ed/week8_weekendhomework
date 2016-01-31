@@ -13,17 +13,29 @@ var RecordStore = function(name, city) {
 
 RecordStore.prototype = {
   listInventory: function() {
+    console.log("*".repeat(70));
     for (var i=0; i<this.inventory.length; i++) {
       console.log("Artist:", this.inventory[i].artist);
       console.log("Title:", this.inventory[i].title);
       console.log("Price: £", this.inventory[i].price);
-      console.log("**************************************************************");
+      console.log("*".repeat(70));
     }
   },
   sellRecord: function(record) {
     this.balance -= record.price;
     var index = this.inventory.indexOf(record);
     this.inventory.splice(index,1);
+  },
+  reportFinances: function() {
+    var inventoryValue = 0;
+    for (var i=0; i<this.inventory.length; i++) {
+      inventoryValue += this.inventory[i].price;
+    }
+    console.log("*".repeat(70));
+    console.log("Record store balance: £", this.balance);
+    console.log("Total value of inventory: £", inventoryValue);
+    console.log("*".repeat(70));
+    return inventoryValue;
   }
 }
 
