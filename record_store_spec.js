@@ -1,10 +1,8 @@
-
-
-// Create a RecordCollector (or customer) constructor who can buy and sell records.
 // Use TDD all the way through!
 
 var Record = require("./record_store.js").Record;
 var RecordStore = require("./record_store.js").RecordStore;
+var RecordCollector = require("./record_store.js").RecordCollector;
 
 var assert =  require("assert");
 
@@ -107,4 +105,28 @@ describe("RecordStore", function() {
     assert.equal(inventoryValue, 55);
   });
 })
+
+// Create a RecordCollector (or customer) constructor who can buy and sell records.
+describe("RecordCollector", function() {
+  it("should be able to buy records", function() {
+    var myRecordStore = new RecordStore("Scratched Records", "Edinburgh");
+    var record60s = new Record("The Doors", "Waiting For The Sun", 12);
+    var record70s = new Record("David Bowie", "The Rise and Fall of Ziggy Stardust", 10);
+    var record80s = new Record("Pixies", "Surfer Rosa", 8);
+    var record90s = new Record("Beck", "Odelay", 9);
+    var record00s = new Record("Sufjan Stevens", "Illinois", 8);
+    var record10s = new Record("Disclosure", "Settle", 8);
+    myRecordStore.inventory = [record60s, record70s, record80s, record90s, record00s, record10s];
+    myRecordStore.balance = 2000;
+    myRecordCollector = new RecordCollector("Bobby", 100);
+    myRecordCollector.buy(record90s, myRecordStore);
+    assert.deepEqual(myRecordCollector.recordCollection, [record90s]);
+    assert.equal(myRecordCollector.cash, 91);
+  });
+
+  it("should be able to sell records", function() {
+
+  });
+})
+
 

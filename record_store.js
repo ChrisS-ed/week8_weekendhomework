@@ -39,5 +39,21 @@ RecordStore.prototype = {
   }
 }
 
+var RecordCollector = function(name, cash) {
+  this.name = name;
+  this.cash = cash;
+  this.recordCollection = [];
+}
+RecordCollector.prototype = {
+  buy: function(record, store) {
+    store.balance += record.price;
+    this.cash -= record.price;
+    var index = store.inventory.indexOf(record);
+    store.inventory.splice(index,1);
+    this.recordCollection.push(record);
+  }
+}
+
 module.exports.Record = Record;
 module.exports.RecordStore = RecordStore;
+module.exports.RecordCollector = RecordCollector;
