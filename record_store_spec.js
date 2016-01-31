@@ -121,11 +121,28 @@ describe("RecordCollector", function() {
     myRecordCollector = new RecordCollector("Bobby", 100);
     myRecordCollector.buy(record90s, myRecordStore);
     assert.deepEqual(myRecordCollector.recordCollection, [record90s]);
+    assert.deepEqual(myRecordStore.inventory, [record60s, record70s, record80s, record00s, record10s]);
     assert.equal(myRecordCollector.cash, 91);
+    assert.equal(myRecordStore.balance, 2009);
   });
 
   it("should be able to sell records", function() {
-
+    var myRecordStore = new RecordStore("Scratched Records", "Edinburgh");
+    var record60s = new Record("The Doors", "Waiting For The Sun", 12);
+    var record70s = new Record("David Bowie", "The Rise and Fall of Ziggy Stardust", 10);
+    var record80s = new Record("Pixies", "Surfer Rosa", 8);
+    var record90s = new Record("Beck", "Odelay", 9);
+    var record00s = new Record("Sufjan Stevens", "Illinois", 8);
+    var record10s = new Record("Disclosure", "Settle", 8);
+    myRecordStore.inventory = [record60s, record70s, record80s, record00s, record10s];
+    myRecordStore.balance = 2000;
+    myRecordCollector = new RecordCollector("Bobby", 100);
+    myRecordCollector.recordCollection = [record90s];
+    myRecordCollector.sell(record90s, myRecordStore);
+    assert.deepEqual(myRecordCollector.recordCollection, []);
+    assert.deepEqual(myRecordStore.inventory.sort, [record60s, record70s, record80s, record90s, record00s, record10s].sort);
+    assert.equal(myRecordCollector.cash, 109);
+    assert.equal(myRecordStore.balance, 1991);
   });
 })
 

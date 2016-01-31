@@ -51,6 +51,13 @@ RecordCollector.prototype = {
     var index = store.inventory.indexOf(record);
     store.inventory.splice(index,1);
     this.recordCollection.push(record);
+  },
+  sell: function(record, store) {
+    store.balance -= record.price;
+    this.cash += record.price;
+    var index = this.recordCollection.indexOf(record);
+    this.recordCollection.splice(index,1);
+    store.inventory.push(record);
   }
 }
 
