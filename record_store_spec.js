@@ -1,6 +1,6 @@
 
 
-// Create a method so that the RecordStore can sell a record. Adjust the cash in bank to take into account the price of the record sold
+
 // Create a method that reports on the financial situation of the store. Cash and value of inventory.
 // Create a RecordCollector (or customer) constructor who can buy and sell records.
 // Use TDD all the way through!
@@ -72,8 +72,26 @@ describe("RecordStore", function() {
     var record70s = new Record("David Bowie", "The Rise and Fall of Ziggy Stardust", 10);
     var record80s = new Record("Pixies", "Surfer Rosa", 8);
     var record90s = new Record("Beck", "Odelay", 9);
-    myRecordStore.inventory = [record60s, record70s, record80s, record90s];
+    var record00s = new Record("Sufjan Stevens", "Illinois", 8);
+    var record10s = new Record("Disclosure", "Settle", 8);
+    myRecordStore.inventory = [record60s, record70s, record80s, record90s, record00s, record10s];
     myRecordStore.listInventory();
+  });
+
+  // Create a method so that the RecordStore can sell a record. Adjust the cash in bank to take into account the price of the record sold
+  it("should be able to sell a record and adjust cash balance", function(){
+    var myRecordStore = new RecordStore("Scratched Records", "Edinburgh");
+    var record60s = new Record("The Doors", "Waiting For The Sun", 12);
+    var record70s = new Record("David Bowie", "The Rise and Fall of Ziggy Stardust", 10);
+    var record80s = new Record("Pixies", "Surfer Rosa", 8);
+    var record90s = new Record("Beck", "Odelay", 9);
+    var record00s = new Record("Sufjan Stevens", "Illinois", 8);
+    var record10s = new Record("Disclosure", "Settle", 8);
+    myRecordStore.inventory = [record60s, record70s, record80s, record90s, record00s, record10s];
+    myRecordStore.balance = 2000;
+    myRecordStore.sellRecord(record70s);
+    assert.deepEqual(myRecordStore.inventory, [record60s, record80s, record90s, record00s, record10s]);
+    assert.equal(myRecordStore.balance, 1990);
   });
 })
 
